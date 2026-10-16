@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/chiku_love_single_file.html"
+    }
+  ]
+}
