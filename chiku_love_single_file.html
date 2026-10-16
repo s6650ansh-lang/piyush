@@ -508,7 +508,12 @@ Pinky</pre>
           syncMusicState();
         } catch (error) {
           soundToggle.setAttribute("aria-pressed", "false");
-          soundToggle.textContent = "♫ Sound unavailable";
+          if (error instanceof DOMException && error.name === "NotAllowedError") {
+            soundToggle.textContent = "♫ Tap for sound";
+            musicStatus.textContent = "Your browser blocks autoplay. Tap the sound button or anywhere on the page to play the song.";
+            return;
+          }
+          soundToggle.textContent = "♫ Song unavailable";
           musicStatus.textContent = error instanceof Error
             ? `Background song could not play: ${error.message}`
             : "Background song could not play.";
